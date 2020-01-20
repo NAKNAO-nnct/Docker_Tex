@@ -53,19 +53,6 @@ RUN apk add --no-cache nodejs nodejs-npm
 RUN npm install -g browser-sync
 # RUN browser-sync start --server --files "/root/work/*" &
 
-# PDF.jsを追加
-# RUN git clone https://github.com/mozilla/pdf.js.git
-# RUN cd pdf.js
-# RUN 
-
-# cron設定
-# COPY ./build_item/npm.sh /bin/browser_sync.sh
-# COPY ./build_item/latex.sh /bin/latexmk_sync.sh
-# COPY ./build_item/root /var/spool/cron/crontabs/root
-# RUN chmod +x /bin/browser_sync.sh
-# RUN chmod +x /bin/latexmk_sync.sh
-# CMD crond -l 2 -f
-
 # 不要なパッケージなどの削除(イメージの容量削減のため)
 RUN apk del xz tar
 RUN rm -rf /var/cache/apk/*
