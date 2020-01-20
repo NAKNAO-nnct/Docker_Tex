@@ -1,0 +1,11 @@
+version: "3.1"
+services:
+  texlive:
+    image: mylatexlive
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    volumes:
+      - ./sample:/root/work
+      - ./build_item/styles:/usr/local/texlive/2019/texmf-dist/tex/latex/user_style
+    command: latexmk --pvc /root/work/sample.tex

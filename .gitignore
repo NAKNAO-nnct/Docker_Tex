@@ -1,0 +1,7 @@
+sample/*.aux
+sample/*.dvi
+sample/*.f*
+sample/*.sy*
+
+.env
+
