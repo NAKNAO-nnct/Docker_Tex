@@ -2,7 +2,7 @@
 FROM alpine:3.9.4
 
 # MAINTAINER nontan <nontan@sfc.wide.ad.jp>
-LABEL maintainer="nontan@sfc.wide.ad.jp"
+LABEL maintainer="trompot@misosiru.ml"
 
 WORKDIR /root/work
 
@@ -45,19 +45,19 @@ RUN tlmgr install fontawesome
 
 # 追加sty
 RUN tlmgr install cite fancybox framed comment caption float here listings pict2e
-RUN mkdir /usr/local/texlive/2019/texmf-dist/tex/latex/user_style
+# RUN mkdir /usr/local/texlive/2019/texmf-dist/tex/latex/user_style
+COPY ./build_item/styles /usr/local/texlive/2019/texmf-dist/tex/latex/user_style
+RUN mktexlsr
 
 # nodejsを追加
 RUN apk update
 RUN apk add --no-cache nodejs nodejs-npm
 RUN npm install -g browser-sync
-# RUN browser-sync start --server --files "/root/work/*" &
 
 # 不要なパッケージなどの削除(イメージの容量削減のため)
 RUN apk del xz tar
 RUN rm -rf /var/cache/apk/*
 RUN rm -rf /tmp/*
-
 
 # References
 # - https://github.com/blang/latex-docker

@@ -6,6 +6,8 @@ $dvipdf                      = 'dvipdfmx %O -o %D %S';
 $makeindex                   = 'mendex -U %O -o %D %S';
 $max_repeat                  = 5;
 $pdf_mode                    = 3; # generates pdf via dvipdfmx
+$aux_dir                     = '/root/work/tmp';
+$out_dir                     = '/root/work/tmp';
 
 # Prevent latexmk from removing PDF after typeset.
 # This enables Skim to chase the update in PDF automatically.
