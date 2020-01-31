@@ -1,7 +1,7 @@
 # Alpine Linux v3.9.4をベースのイメージとして指定
 FROM alpine:3.9.4
 
-# MAINTAINER nontan <nontan@sfc.wide.ad.jp>
+# MAINTAINER nontan <trompot@misosiru.ml>
 LABEL maintainer="trompot@misosiru.ml"
 
 WORKDIR /root/work
@@ -33,20 +33,18 @@ ENV PATH="/usr/local/texlive/latest/bin/x86_64-linuxmusl:${PATH}"
 # texファイルの自動コンパイルパッケージをインストール
 RUN tlmgr install latexmk
 # latexmkの設定ファイルをホストからイメージにコピー
-COPY ./build_item/app/config/.latexmkrc /root/.latexmkrc
+COPY ./app/config/.latexmkrc /root/.latexmkrc
 # 2カラムの設定に必要なパッケージのインストール
 RUN tlmgr install multirow
 # 日本語対応パッケージのインストール
 RUN tlmgr install collection-langjapanese
 # フォントパッケージのインストール
-RUN tlmgr install collection-fontsrecommended
-RUN tlmgr install collection-fontutils
-RUN tlmgr install fontawesome
+RUN tlmgr install collection-fontsrecommended collection-fontutils fontawesome
 
 # 追加sty
-RUN tlmgr install cite fancybox framed comment caption float here listings pict2e
+RUN tlmgr install cite fancybox framed comment caption float here listings pict2e pdfpages pdflscape 
 # RUN mkdir /usr/local/texlive/2019/texmf-dist/tex/latex/user_style
-COPY ./build_item/styles /usr/local/texlive/2019/texmf-dist/tex/latex/user_style
+COPY ./app/styles /usr/local/texlive/2019/texmf-dist/tex/latex/user_style
 RUN mktexlsr
 
 # nodejsを追加
