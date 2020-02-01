@@ -8,4 +8,4 @@ services:
     volumes:
       - ./work:/root/work
       - ./app/styles:/usr/local/texlive/2019/texmf-dist/tex/latex/user_style
-    command: latexmk --pvc /root/work/main.tex
+    command: sh -c "browser-sync start --server --files \"/root/work/tmp/*\" & latexmk --pvc /root/work/main.tex"

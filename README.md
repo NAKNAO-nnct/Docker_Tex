@@ -12,6 +12,4 @@
 ```shell
 $ docker build -t mylatexlive .
 $ docker-compose up -d
-$ docker exec -it texlive_texlive_1 sh
-(docker)$ browser-sync start --server --files "/root/work/\*" &
 ```
